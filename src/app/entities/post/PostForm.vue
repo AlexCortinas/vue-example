@@ -34,7 +34,7 @@
         <b-form-select
           id="author"
           :options="users"
-          v-model="post.userId"
+          v-model="post.author"
           required/>
       </b-form-group>
 
@@ -72,7 +72,7 @@ export default {
       return this.allUsers.map(user => {
         return {
           text: user.name,
-          value: user.id
+          value: user
         }
       })
     }

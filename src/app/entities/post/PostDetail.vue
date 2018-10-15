@@ -13,7 +13,7 @@
           variant="primary">Edit</b-btn>
       </div>
       <h3>{{ post.title }}</h3>
-      <h5>{{ author && author.name }}</h5>
+      <h5>{{ post.author.name }}</h5>
       <hr>
       <div class="post">{{ post.body }}</div>
     </div>
@@ -30,28 +30,16 @@ export default {
     return {
       loading: false,
       post: null,
-      error: null,
-      allUsers: []
-    }
-  },
-  computed: {
-    author() {
-      return this.allUsers.find(user => user.id == this.post.userId)
+      error: null
     }
   },
   watch: {
     '$route': 'fetchData'
   },
   created() {
-    this.getUsers()
     this.fetchData()
   },
   methods: {
-    getUsers() {
-      HTTP.get('users')
-      .then(response => this.allUsers = response.data)
-      .catch(err => this.error = err.message)
-    },
     fetchData() {
       this.error = this.post = null
       this.loading = true
