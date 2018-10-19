@@ -99,18 +99,22 @@ export default {
     save() {
       if (this.$route.params.id) {
         HTTP.put(`posts/${this.$route.params.id}`, this.post)
-        .then(response =>
-          this.$router.replace({ name: 'PostDetail', params: { id: response.data.id }}))
-        .catch(err => this.error = err.message)
+        .then(this._successHandler)
+        .catch(this._errorHandler)
       } else {
         HTTP.post('posts', this.post)
-        .then(response =>
-          this.$router.replace({ name: 'PostDetail', params: { id: response.data.id }}))
-        .catch(err => this.error = err.message)
+        .then(this._successHandler)
+        .catch(this._errorHandler)
       }
     },
     back() {
       this.$router.go(-1)
+    },
+    _successHandler(response) {
+      this.$router.replace({ name: 'PostDetail', params: { id: response.data.id }})
+    },
+    _errorHandler(err) {
+      this.error = err.response.data.message
     }
   }
 }
