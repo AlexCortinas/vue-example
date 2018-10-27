@@ -20,7 +20,6 @@
 </template>
 
 <script>
-
 export default {
   name: 'LoadingPage',
   props: {
@@ -29,7 +28,7 @@ export default {
       required: true
     },
     error: {
-      type: [ String, Object ],
+      type: [ String, Object, Error ],
       default: null
     }
   },

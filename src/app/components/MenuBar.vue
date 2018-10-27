@@ -13,6 +13,17 @@
         <b-nav-item
           :to="{ name: 'PostList' }"
           exact>Posts</b-nav-item>
+        <b-nav-item
+          v-if="!isLogged"
+          :to="{ name: 'Login' }"
+          exact>Login</b-nav-item>
+        <b-nav-item
+          v-if="isLogged"
+          @click="logout()">Logout</b-nav-item>
+      </b-navbar-nav>
+
+      <b-navbar-nav class="ml-auto">
+        <b-nav-item>{{ loggedUser }}</b-nav-item>
       </b-navbar-nav>
 
     </b-collapse>
@@ -20,10 +31,21 @@
 </template>
 
 <script>
+import auth from '../common/auth'
+
 export default {
   computed: {
-    entitiesActive: function () {
-      return [ 'MovieCreate', 'MovieList', 'DirectorList' ].indexOf(this.$route.name) != -1
+    isLogged() {
+      return auth.user.logged
+    },
+    loggedUser() {
+      return auth.user.logged ? `${auth.user.login} (${auth.user.authority})` : 'not logged'
+    }
+  },
+  methods: {
+    logout() {
+      auth.logout()
+      this.$router.push({ name: 'Home' })
     }
   }
 }

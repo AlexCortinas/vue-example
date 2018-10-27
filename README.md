@@ -27,6 +27,12 @@ Vue es un framework para crear interfaces web. Vue router es la librería que se
 * [Vue](https://github.com/vuejs/vue)
 * [Vue router](https://router.vuejs.org/)
 
+### Vue Notification
+
+Un componente de Vue que nos permite mostrar alertas sin mucho trabajo.
+
+* [Vue Notification](http://vue-notification.yev.io/)
+
 ### Parcel
 
 Parcel es un *empaquetador de aplicaciones web* (*web application bundler*). Se encarga de juntar todos los ficheros necesarios para el funcionamiento de una aplicación en un único fichero, *transpilando* el código si es necesario: [SCSS](https://sass-lang.com/) a CSS, TypeScript a JavaScript, etc. 
