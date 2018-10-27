@@ -13,7 +13,7 @@
           variant="primary">Edit</b-btn>
       </div>
       <h3>{{ post.title }}</h3>
-      <h5>{{ post.author.name }}</h5>
+      <h5>{{ post.author.login }}</h5>
       <hr>
       <div class="post">{{ post.body }}</div>
     </div>

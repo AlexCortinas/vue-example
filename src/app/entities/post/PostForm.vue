@@ -71,7 +71,7 @@ export default {
     users() {
       return this.allUsers.map(user => {
         return {
-          text: user.name,
+          text: user.login,
           value: user
         }
       })
