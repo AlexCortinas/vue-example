@@ -16,6 +16,7 @@
 
       <h3>{{ post.title }}</h3>
       <h5>{{ post.author.login }}</h5>
+      <div class="tags">{{ tagsAsString }}</div>
       <hr>
       <div class="post">{{ post.body }}</div>
     </div>
@@ -39,6 +40,9 @@ export default {
   computed: {
     isAdmin() {
       return auth.isAdmin()
+    },
+    tagsAsString() {
+      return this.post.tags.map(t => t.name).join(', ')
     }
   },
   watch: {
@@ -67,5 +71,9 @@ export default {
 <style scoped lang="scss">
   .post {
     white-space: pre;
+  }
+
+  .tags {
+    font-style: italic;
   }
 </style>

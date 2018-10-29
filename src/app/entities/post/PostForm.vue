@@ -39,6 +39,16 @@
       </b-form-group>
 
       <b-form-group
+        label="Tags:"
+        label-for="tags">
+        <b-form-select
+          id="tags"
+          :options="tags"
+          v-model="post.tags"
+          multiple/>
+      </b-form-group>
+
+      <b-form-group
         label="Body:"
         label-for="body">
         <b-form-textarea
@@ -64,7 +74,8 @@ export default {
       post: {},
       error: null,
       loading: false,
-      allUsers: []
+      allUsers: [],
+      allTags: []
     }
   },
   computed: {
@@ -75,10 +86,19 @@ export default {
           value: user
         }
       })
+    },
+    tags() {
+      return this.allTags.map(tag => {
+        return {
+          text: tag.name,
+          value: tag
+        }
+      })
     }
   },
   created() {
     this.getUsers()
+    this.getTags()
     if (this.$route.params.id) {
       this.loading = true
 
@@ -94,6 +114,11 @@ export default {
     getUsers() {
       HTTP.get('users')
       .then(response => this.allUsers = response.data)
+      .catch(err => this.error = err.message)
+    },
+    getTags() {
+      HTTP.get('tags')
+      .then(response => this.allTags = response.data)
       .catch(err => this.error = err.message)
     },
     save() {
