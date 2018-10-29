@@ -27,7 +27,7 @@ export default {
   created() {
     // nada más ejecutar la aplicación comprobamos si estamos autenticados
     if (auth.getToken()) {
-      auth.authenticate()
+      auth.authenticate().catch(() => auth.logout())
     }
   }
 }
