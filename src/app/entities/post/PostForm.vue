@@ -25,7 +25,9 @@
           v-model="post.title"
           type="text"
           required
-          placeholder="Enter title"/>
+          placeholder="Enter title">
+          <!-- -->
+        </b-form-input>
       </b-form-group>
 
       <b-form-group
@@ -35,7 +37,9 @@
           id="author"
           :options="users"
           v-model="post.author"
-          required/>
+          required>
+          <!-- -->
+        </b-form-select>
       </b-form-group>
 
       <b-form-group
@@ -45,7 +49,9 @@
           id="tags"
           :options="tags"
           v-model="post.tags"
-          multiple/>
+          multiple>
+          <!-- -->
+        </b-form-select>
       </b-form-group>
 
       <b-form-group
@@ -57,7 +63,9 @@
           :rows="3"
           :max-rows="6"
           required
-          placeholder="Enter body"/>
+          placeholder="Enter body">
+          <!-- -->
+        </b-form-textarea>
       </b-form-group>
     </b-form>
   </LoadingPage>

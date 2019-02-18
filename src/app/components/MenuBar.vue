@@ -1,7 +1,9 @@
 <template>
   <b-navbar
     toggleable="md">
-    <b-navbar-toggle target="nav_collapse"/>
+    <b-navbar-toggle target="nav_collapse">
+      <!-- -->
+    </b-navbar-toggle>
 
     <b-navbar-brand to="/">VueExample</b-navbar-brand>
 

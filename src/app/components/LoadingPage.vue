@@ -15,7 +15,9 @@
         @click="reload">Reload</button>
     </div>
 
-    <slot v-else/>
+    <slot v-else>
+      <!-- -->
+    </slot>
   </div>
 </template>
 

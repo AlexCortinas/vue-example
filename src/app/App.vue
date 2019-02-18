@@ -3,9 +3,15 @@
     <notifications
       :max="3"
       :width="400"
-      position="top center"/>
-    <MenuBar/>
-    <router-view class="content"/>
+      position="top center">
+      <!-- -->
+    </notifications>
+    <MenuBar>
+      <!-- -->
+    </MenuBar>
+    <router-view class="content">
+      <!-- -->
+    </router-view>
   </div>
 </template>
 
