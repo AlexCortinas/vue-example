@@ -48,7 +48,7 @@ export default {
         login: this.username,
         password: this.password
       })
-      .then(response => {
+      .then(() => {
         this.$router.go(-1)
       })
       .catch(err => {
