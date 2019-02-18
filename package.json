@@ -34,7 +34,12 @@
     "vue-template-compiler": "2.6.6"
   },
   "scripts": {
+    "prebuild": "npm run eslint",
     "build": "parcel build index.html",
-    "debug": "parcel index.html"
+    "debug": "parcel index.html",
+    "eslint": "eslint --ext .js,.vue src",
+    "eslintfix": "eslint --ext .js,.vue src --fix",
+    "watch": "esw -w --ext .js,.vue src",
+    "watchfix": "esw -w --ext .js,.vue src --fix"
   }
 }
