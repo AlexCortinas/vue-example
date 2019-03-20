@@ -16,7 +16,7 @@
     "@fortawesome/free-solid-svg-icons": "5.2.0",
     "@fortawesome/vue-fontawesome": "0.1.5",
     "axios": "0.18.0",
-    "bootstrap-vue": "2.0.0-rc.12",
+    "bootstrap-vue": "2.0.0-rc.15",
     "normalize.css": "8.0.1",
     "vue": "2.6.6",
     "vue-hot-reload-api": "2.3.2",
