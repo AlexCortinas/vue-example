@@ -1,69 +1,83 @@
 <template>
   <LoadingPage
     :loading="loading"
-    :error="error">
-
+    :error="error"
+  >
     <div class="float-right">
       <b-btn
         variant="primary"
-        @click="back()">Back</b-btn>
+        @click="back()"
+      >
+        Back
+      </b-btn>
       <b-btn
         variant="primary"
-        @click="save()">Submit</b-btn>
+        @click="save()"
+      >
+        Submit
+      </b-btn>
     </div>
 
     <b-form
       v-if="post"
       class="app-form"
-      @submit="save">
-
+      @submit="save"
+    >
       <b-form-group
         label="Title:"
-        label-for="title">
+        label-for="title"
+      >
         <b-form-input
           id="title"
           v-model="post.title"
           type="text"
           required
-          placeholder="Enter title">
+          placeholder="Enter title"
+        >
           <!-- -->
         </b-form-input>
       </b-form-group>
 
       <b-form-group
         label="Author:"
-        label-for="author">
+        label-for="author"
+      >
         <b-form-select
           id="author"
-          :options="users"
           v-model="post.author"
-          required>
+          :options="users"
+          required
+        >
           <!-- -->
         </b-form-select>
       </b-form-group>
 
       <b-form-group
         label="Tags:"
-        label-for="tags">
+        label-for="tags"
+      >
         <b-form-select
           id="tags"
-          :options="tags"
           v-model="post.tags"
-          multiple>
+          :options="tags"
+          multiple
+        >
           <!-- -->
         </b-form-select>
       </b-form-group>
 
       <b-form-group
         label="Body:"
-        label-for="body">
+        label-for="body"
+      >
         <b-form-textarea
           id="body"
           v-model="post.body"
           :rows="3"
           :max-rows="6"
           required
-          placeholder="Enter body">
+          placeholder="Enter body"
+        >
           <!-- -->
         </b-form-textarea>
       </b-form-group>

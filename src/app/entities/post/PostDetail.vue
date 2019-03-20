@@ -1,24 +1,34 @@
 <template>
   <LoadingPage
     :loading="loading"
-    :error="error">
-
+    :error="error"
+  >
     <div v-if="post">
       <div class="float-right">
         <b-btn
           variant="primary"
-          @click="back()">Back</b-btn>
+          @click="back()"
+        >
+          Back
+        </b-btn>
         <b-btn
           v-if="isAdmin"
           :to="{ name: 'PostUpdate', params: { id: post.id }}"
-          variant="primary">Edit</b-btn>
+          variant="primary"
+        >
+          Edit
+        </b-btn>
       </div>
 
       <h3>{{ post.title }}</h3>
       <h5>{{ post.author.login }}</h5>
-      <div class="tags">{{ tagsAsString }}</div>
+      <div class="tags">
+        {{ tagsAsString }}
+      </div>
       <hr>
-      <div class="post">{{ post.body }}</div>
+      <div class="post">
+        {{ post.body }}
+      </div>
     </div>
   </LoadingPage>
 </template>

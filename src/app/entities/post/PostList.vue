@@ -1,20 +1,25 @@
 <template>
   <LoadingPage
     :loading="loading"
-    :error="error">
-
+    :error="error"
+  >
     <div class="float-right">
       <b-btn
         v-if="isAdmin"
         :to="{ name: 'PostCreate' }"
-        variant="primary">New</b-btn>
+        variant="primary"
+      >
+        New
+      </b-btn>
     </div>
 
     <div
       v-for="post in posts"
-      :key="post.id">
+      :key="post.id"
+    >
       <router-link
-        :to="{ name: 'PostDetail', params: { id: post.id } }">
+        :to="{ name: 'PostDetail', params: { id: post.id } }"
+      >
         {{ post.title }}
       </router-link>
     </div>

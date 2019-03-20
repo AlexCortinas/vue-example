@@ -2,17 +2,22 @@
   <div>
     <div
       v-if="loading"
-      class="loading">
+      class="loading"
+    >
       Loading...
     </div>
 
     <div
       v-else-if="error"
-      class="error">
+      class="error"
+    >
       <pre>{{ error }}</pre>
       <button
         class="btn btn-primary"
-        @click="reload">Reload</button>
+        @click="reload"
+      >
+        Reload
+      </button>
     </div>
 
     <slot v-else>

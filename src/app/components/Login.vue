@@ -2,7 +2,8 @@
   <form @submit.prevent="userLogin">
     <div
       v-if="error"
-      class="error">
+      class="error"
+    >
       <pre>{{ error }}</pre>
     </div>
     <div class="form-group">
@@ -13,7 +14,8 @@
         name="username"
         type="text"
         class="form-control"
-        required>
+        required
+      >
     </div>
     <div class="form-group">
       <label for="password">Password</label>
@@ -23,11 +25,15 @@
         type="password"
         class="form-control"
         name="password"
-        required>
+        required
+      >
     </div>
     <button
       type="submit"
-      class="btn btn-primary">Log In</button>
+      class="btn btn-primary"
+    >
+      Log In
+    </button>
   </form>
 </template>
 
