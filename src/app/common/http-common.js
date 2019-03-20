@@ -1,4 +1,3 @@
-import Vue from 'vue'
 import axios from 'axios'
 import auth from './auth'
 
@@ -7,10 +6,7 @@ const HTTP = axios.create({
 })
 
 const onUnauthorized = () => {
-  Vue.notify({
-    text: 'Access denied!',
-    type: 'error'
-  })
+  alert("Access denied!")
   auth.logout()
 }
 const onResponseSuccess = response => response

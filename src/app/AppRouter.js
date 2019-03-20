@@ -1,4 +1,3 @@
-import Vue from 'vue'
 import VueRouter from 'vue-router'
 import auth from './common/auth'
 
@@ -35,20 +34,14 @@ router.beforeEach((to, from, next) => {
     if (userIsLogged) {
       if (requiredAuthority && requiredAuthority != loggedUserAuthority) {
         // usuario logueado pero sin permisos
-        Vue.notify({
-          text: 'Access is not allowed for the current user. Try to log again.',
-          type: 'error'
-        })
+        alert('Access is not allowed for the current user. Try to log again.')
         auth.logout().then(() => next('/login'))
       } else {
         // usuario logueado y con permisos adecuados
         next()
       }
     } else { // usuario no está logueado
-      Vue.notify({
-        text: 'This page requires authentication.',
-        type: 'error'
-      })
+      alert('This page requires authentication.')
       next('/login')
     }
   } else { // página pública
