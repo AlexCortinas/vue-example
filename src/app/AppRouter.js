@@ -23,35 +23,37 @@ const router = new VueRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  // por defecto las rutas restringen el acceso a usuario autenticados
-  const requiresAuth = !to.meta.public
+  auth.isAuthenticationChecked.finally(() => {
+    // por defecto las rutas restringen el acceso a usuario autenticados
+    const requiresAuth = !to.meta.public
 
-  const requiredAuthority = to.meta.authority
-  const userIsLogged = auth.user.logged
-  const loggedUserAuthority = auth.user.authority
+    const requiredAuthority = to.meta.authority
+    const userIsLogged = auth.user.logged
+    const loggedUserAuthority = auth.user.authority
 
-  if (requiresAuth) {
-    if (userIsLogged) {
-      if (requiredAuthority && requiredAuthority != loggedUserAuthority) {
-        // usuario logueado pero sin permisos
-        alert('Access is not allowed for the current user. Try to log again.')
-        auth.logout().then(() => next('/login'))
+    if (requiresAuth) {
+      if (userIsLogged) {
+        if (requiredAuthority && requiredAuthority != loggedUserAuthority) {
+          // usuario logueado pero sin permisos
+          alert('Access is not allowed for the current user. Try to log again.')
+          auth.logout().then(() => next('/login'))
+        } else {
+          // usuario logueado y con permisos adecuados
+          next()
+        }
+      } else { // usuario no está logueado
+        alert('This page requires authentication.')
+        next('/login')
+      }
+    } else { // página pública
+      if (userIsLogged && to.meta.isLoginPage) {
+        // si estamos logueados no hace falta volver a mostrar el login
+        next({ name: 'Home', replace: true })
       } else {
-        // usuario logueado y con permisos adecuados
         next()
       }
-    } else { // usuario no está logueado
-      alert('This page requires authentication.')
-      next('/login')
     }
-  } else { // página pública
-    if (userIsLogged && to.meta.isLoginPage) {
-      // si estamos logueados no hace falta volver a mostrar el login
-      next({ name: 'Home', replace: true })
-    } else {
-      next()
-    }
-  }
+  })
 })
 
 export default router
