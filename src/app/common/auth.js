@@ -14,26 +14,44 @@ const store = {
   isAuthenticationChecked: _checkAuthentication()
 }
 
-
-// usamos localStorage para guardar el token, de forma
-// que sea persistente (se inhabilita con el tiempo o
-// al hacer logout)
-function saveToken(token) {
-  localStorage.setItem('token', token)
+function login(credentials) {
+  return HTTP.post('authenticate', credentials)
+    .then(response => {
+      _saveToken(response.data.token)
+      return _authenticate()
+    })
 }
 
-function removeToken() {
-  localStorage.removeItem('token')
+function logout() {
+  _removeToken()
+  store.user.login = ''
+  store.user.authority = ''
+  store.user.logged = false
 }
 
 function getToken() {
   return localStorage.getItem('token')
 }
 
+function isAdmin() {
+  return store.user.authority == 'ADMIN'
+}
+
+// usamos localStorage para guardar el token, de forma
+// que sea persistente (se inhabilita con el tiempo o
+// al hacer logout)
+function _saveToken(token) {
+  localStorage.setItem('token', token)
+}
+
+function _removeToken() {
+  localStorage.removeItem('token')
+}
+
 // si tenemos el token guardado, esta petición se hará
 // con el filtro definido en http-common y por tanto nos
 // devolverá el usuario logueado
-function authenticate() {
+function _authenticate() {
   return HTTP.get('account').then(response => {
     store.user.login = response.data.login
     store.user.authority = response.data.authority
@@ -42,29 +60,10 @@ function authenticate() {
   })
 }
 
-function login(credentials) {
-  return HTTP.post('authenticate', credentials)
-  .then(response => {
-    saveToken(response.data.token)
-    return authenticate()
-  })
-}
-
-function logout() {
-  removeToken()
-  store.user.login = ''
-  store.user.authority = ''
-  store.user.logged = false
-}
-
-function isAdmin() {
-  return store.user.authority == 'ADMIN'
-}
-
 function _checkAuthentication() {
   return new Promise(res => {
     if (getToken()) {
-      authenticate().catch(() => logout()).finally(() => res(true))
+      _authenticate().catch(() => logout()).finally(() => res(true))
     } else {
       res(true)
     }
