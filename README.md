@@ -1,6 +1,6 @@
 # vue-example
 
-Aplicación web de ejemplo implementada con Vue. Consta de un CRUD que realiza peticiones contra un servidor REST falso ([JSONPlaceholder](https://jsonplaceholder.typicode.com/)), por lo que las peticiones POST/PUT no funcionarán correctamente, aunque devuelven una respuesta falsa correcta. Como *package bundler* se ha usado Parcel, que no requiere configuración.
+Aplicación web de ejemplo implementada con Vue. Consta de un CRUD que realiza peticiones contra un servidor REST ([rest-example](https://github.com/AlexCortinas/rest-example)).
 
 Los componentes Vue son definidos usando *single-file components*. Es decir, ficheros con extension `.vue` en los que se define el HTML, JS y CSS asociado a cada componente. Más información en la [documentación de Vue](https://vuejs.org/v2/guide/single-file-components.html).
 
@@ -8,15 +8,13 @@ Los componentes Vue son definidos usando *single-file components*. Es decir, fic
 
 ```bash
 npm install
-npm run debug
+npm run serve
 ```
-
-Nota: al ejecutarse `debug` se muestran *deprecated warnings* por usar la sintaxis `@import` para cargar ficheros `.css`. Se pueden obviar (hay discusiones entre los desarrolladores del conjunto de librerías *scss* y no se ponen de acuerdo en la sintaxis para cargar ficheros css).
-
 ## Scripts
 
-* `debug`: lanza el servidor de aplicaciones de parcel, empaqueta la aplicación y se queda en ejecución, refrescando el explorador web al cambiar el código fuente.
+* `serve`: lanza el servidor de aplicaciones de parcel, empaqueta la aplicación y se queda en ejecución, refrescando el explorador web al cambiar el código fuente.
 * `build`: empaqueta la aplicación.
+* `lint`: limpia el código de la aplicación y muestra errores en el mismo (como variables no usadas o sintaxis incorrecta).
 
 ## Dependencias y utilidades
 
@@ -33,28 +31,17 @@ Un componente de Vue que nos permite mostrar alertas sin mucho trabajo.
 
 * [Vue Notification](http://vue-notification.yev.io/)
 
-### Parcel
+### Vue CLI
 
-Parcel es un *empaquetador de aplicaciones web* (*web application bundler*). Se encarga de juntar todos los ficheros necesarios para el funcionamiento de una aplicación en un único fichero, *transpilando* el código si es necesario: [SCSS](https://sass-lang.com/) a CSS, TypeScript a JavaScript, etc. 
+Vue CLI es una herramienta que facilita el desarrollo de aplicaciones con vue. Permite crear esqueletos automáticamente y gestionar los plugins y dependencias de los mismos. Además, incluye un *empaquetador de aplicaciones web* (*web application bundler*), que se encarga de lanzar la aplicación en modo desarrollo de forma que se actualice automáticamente al cambiar el código fuente, o de generar la aplicación empaquetada lista para desplegar en producción. También proporciona una funcionalidad para reparar y validar el código fuente.
 
-La alternativa más popular ahora mismo es [webpack](https://webpack.js.org/), pero su uso y configuración es más compleja.
+* [Vue CLI](https://cli.vuejs.org/)
 
-* [Parcel](https://parceljs.org/)
+### Vuetify
 
-### Bootstrap (vue)
+Vuetify es un framework basado en [Material Design](https://material.io/design/) que nos permite construir páginas web con un aspecto *cuidado* y *responsive* de manera sencilla. 
 
-Bootstrap es una librería que permite construir páginas web *agradables* y *responsives* de manera sencilla. Es la librería de este tipo más utilizada.
-
-En nuestro caso usaremos una alternativa, Bootstrap + Vue, que implementa los mismos componentes pero utilizando Vue para ello, de forma que su uso es más natural dentro de una aplicación Vue y su rendimiento mejor que si usáramos otra alternativa.
-
-* [Bootstrap](http://getbootstrap.com/)
-* [Bootstrap + Vue](https://bootstrap-vue.js.org/)
-
-### Font Awesome
-
-Colección de iconos de fácil uso. Muchos son de pago, pero la colección gratuita suele tener iconos de sobra para una aplicación prototipo.
-
-* [Font Awesome](https://fontawesome.com/)
+* [Vuetify](https://vuetifyjs.com/en/)
 
 ### Axios
 
