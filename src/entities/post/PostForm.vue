@@ -7,7 +7,7 @@
             <v-text-field
               v-model="post.title"
               label="Title"
-              required
+              :rules="requiredField"
             ></v-text-field>
 
             <v-select
@@ -16,7 +16,7 @@
               item-text="login"
               return-object
               label="Author"
-              required
+              :rules="requiredField"
             ></v-select>
           </v-card-title>
           <v-card-text>
@@ -34,7 +34,7 @@
               v-model="post.body"
               label="Body"
               rows="7"
-              required
+              :rules="requiredField"
             ></v-textarea>
           </v-card-text>
           <v-card-actions>
@@ -68,7 +68,8 @@ export default {
       error: null,
       valid: null,
       users: [],
-      tags: []
+      tags: [],
+      requiredField: [v => !!v || "Field is required"]
     };
   },
   async created() {
@@ -83,6 +84,9 @@ export default {
   },
   methods: {
     async save() {
+      if (!this.$refs.form.validate()) {
+        return;
+      }
       try {
         const savedPost = await PostsRepository.save(this.post);
         this.$router.replace({
